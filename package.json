@@ -1,7 +1,7 @@
 {
-  "name": "sistema-pedidos-cooperativa",
+  "name": "sistema-pedidos-cooperativa-avancado",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,9 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^0.344.0",
+    "firebase": "^10.7.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.20.1",
+    "lucide-react": "^0.344.0",
+    "jspdf": "^2.5.1",
+    "html2canvas": "^1.4.1",
+    "react-dropzone": "^14.2.3",
+    "date-fns": "^2.30.0",
+    "react-hook-form": "^7.48.2",
+    "react-select": "^5.8.0",
+    "react-table": "^7.8.0",
+    "recharts": "^2.8.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

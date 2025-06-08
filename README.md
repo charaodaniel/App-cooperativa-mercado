@@ -1,384 +1,417 @@
-# Sistema de Pedidos para Cooperativa
+# Sistema Avançado de Pedidos para Cooperativas
 
-Um sistema completo de gestão de pedidos desenvolvido para facilitar a comunicação e transações entre cooperativas e mercados parceiros, com integração AppSheet e Google Sheets.
+Um sistema completo e avançado de gestão de pedidos desenvolvido para múltiplas cooperativas, com suporte multiempresa, segurança avançada, Firebase Authentication, e integração completa com AppSheet e Google Sheets.
 
-## 📋 Sobre o Projeto
+## 🚀 Principais Funcionalidades
 
-Este sistema foi desenvolvido para digitalizar e otimizar o processo de pedidos entre mercados cadastrados e uma cooperativa fornecedora de produtos alimentícios e/ou agrícolas. A aplicação oferece interfaces distintas para cooperativas e mercados, com integração completa entre plataforma web e mobile via AppSheet.
+### 🏢 **Suporte Multiempresa**
+- **Isolamento completo** de dados por empresa
+- **Temas personalizáveis** (cores, logos, layouts)
+- **Configurações dinâmicas** por empresa
+- **Múltiplas cooperativas** no mesmo sistema
+
+### 🔐 **Segurança Avançada**
+- **Firebase Authentication** para autenticação robusta
+- **Controle de permissões** granular por usuário
+- **Dados sensíveis** armazenados no Google Drive do cliente
+- **Desenvolvedor isento** de responsabilidade por vazamentos
+
+### 👥 **Gestão Avançada de Usuários**
+- **Múltiplos administradores** com diferentes níveis
+- **Cadastro, edição e remoção** via painel administrativo
+- **Controle de permissões** por recurso e ação
+- **Integração completa** com Firebase Auth
+
+### 📄 **Gestão de Documentos**
+- **Upload seguro** de boletos e comprovantes
+- **Organização automática** por cooperativa/cliente/pedido
+- **Armazenamento** no Google Drive do cliente
+- **Controle de acesso** baseado em permissões
+
+### ⚙️ **Configuração Dinâmica**
+- **Painel administrativo** para configurar APIs
+- **URLs e IDs** de planilhas configuráveis
+- **Sem necessidade** de alterar código
+- **Testes de conexão** integrados
+
+### 🎨 **Personalização Completa**
+- **Temas customizáveis** por empresa
+- **Logos e cores** personalizáveis
+- **Preferências** salvas por usuário
+- **Layouts adaptativos**
+
+### 📱 **Responsividade Total**
+- **Interface otimizada** para mobile e tablet
+- **Layouts adaptativos** para todas as telas
+- **Navegação intuitiva** em dispositivos móveis
+- **Performance otimizada**
+
+### 📊 **Relatórios e Análises**
+- **Geração de PDFs** e arquivos CSV
+- **Filtros avançados** por data, cliente, produto
+- **Permissões de acesso** respeitadas
+- **Export personalizado**
+
+### 💰 **Sistema de Orçamentos**
+- **Criação detalhada** com impostos e condições
+- **Exportação em PDF** profissional
+- **Controle de validade** e status
+- **Conversão para pedidos**
 
 ## 🏗️ Arquitetura da Solução
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Web App       │    │  Google Sheets  │    │  AppSheet App   │
-│   (Desktop)     │◄──►│   (Database)    │◄──►│   (Mobile)      │
+│   Web App       │    │    Firebase     │    │  Google Drive   │
+│   (Multi-tenant)│◄──►│   (Auth + DB)   │◄──►│  (Documents)    │
 │                 │    │                 │    │                 │
-│ • Cooperativa   │    │ • Produtos      │    │ • Mercados      │
-│ • Gestão        │    │ • Pedidos       │    │ • Pedidos       │
-│ • Relatórios    │    │ • Mercados      │    │ • Catálogo      │
+│ • Empresa A     │    │ • Authentication│    │ • Boletos       │
+│ • Empresa B     │    │ • Firestore     │    │ • Comprovantes  │
+│ • Empresa C     │    │ • Real-time     │    │ • Contratos     │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  Google Sheets  │    │   AppSheet      │    │   Relatórios    │
+│  (Data Source)  │    │   (Mobile App)  │    │   (PDF/CSV)     │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## ✨ Funcionalidades
+## 🛠️ Tecnologias Utilizadas
 
-### 🌐 Aplicação Web (Desktop)
+### **Frontend:**
+- **React 18** + TypeScript
+- **React Router** para navegação
+- **Tailwind CSS** para styling responsivo
+- **Lucide React** para ícones
+- **React Hook Form** para formulários
+- **React Dropzone** para upload de arquivos
 
-#### Para Mercados Parceiros:
-- 🛒 **Novo Pedido**: Interface intuitiva para seleção de produtos e criação de pedidos
-- 📋 **Meus Pedidos**: Visualização e acompanhamento do histórico de pedidos
-- 📊 **Dashboard**: Resumo das atividades e estatísticas do mercado
-- 📈 **Relatórios**: Geração de relatórios personalizados com filtros por data
-- 🔍 **Catálogo de Produtos**: Consulta completa dos produtos disponíveis
+### **Backend/Database:**
+- **Firebase Authentication** para autenticação
+- **Firestore** para banco de dados real-time
+- **Firebase Storage** para arquivos
+- **Google Sheets API** para integração
+- **Google Drive API** para documentos
 
-#### Para Cooperativa:
-- 📦 **Gestão de Pedidos**: Visualização e gerenciamento de todos os pedidos recebidos
-- 🏪 **Mercados Parceiros**: Cadastro e acompanhamento dos mercados
-- 📋 **Gestão de Produtos**: CRUD completo de produtos (criar, editar, excluir)
-- 📊 **Dashboard Executivo**: Métricas e KPIs do negócio
-- 📈 **Relatórios Avançados**: Análises detalhadas de vendas e performance
-- 🔄 **Controle de Status**: Atualização de status dos pedidos (Pendente → Confirmado → Entregue)
+### **Integrações:**
+- **AppSheet** para app mobile nativo
+- **Google Workspace** para produtividade
+- **jsPDF** para geração de PDFs
+- **React Select** para seletores avançados
 
-### 📱 Aplicação Mobile (AppSheet)
-
-#### Para Mercados:
-- 📱 **App Nativo**: Interface otimizada para dispositivos móveis
-- 🔄 **Sincronização Offline**: Criar pedidos sem conexão com internet
-- 📷 **Scanner de Código**: Buscar produtos por código de barras
-- 📍 **Geolocalização**: Confirmar localização na entrega
-- 🔔 **Notificações Push**: Atualizações de status em tempo real
-
-#### Para Cooperativa:
-- 📊 **Dashboard Mobile**: Acompanhamento em tempo real
-- ✅ **Aprovação Rápida**: Confirmar pedidos diretamente do celular
-- 📋 **Gestão de Estoque**: Atualizar disponibilidade de produtos
-- 📈 **Relatórios Mobile**: Visualizar métricas importantes
+### **Deploy:**
+- **Vercel/Netlify** para hospedagem web
+- **Firebase Hosting** alternativa
+- **GitHub Actions** para CI/CD
 
 ## 🚀 Como Executar o Projeto
 
-### Pré-requisitos
-- Node.js (versão 16 ou superior)
+### **Pré-requisitos:**
+- Node.js 18+ 
 - npm ou yarn
-- Conta Google (para Sheets e AppSheet)
+- Conta Firebase
+- Conta Google (Sheets, Drive, AppSheet)
 
-### Passo a Passo
-
-1. **Clone ou baixe o projeto**
-   ```bash
-   git clone [url-do-repositorio]
-   cd sistema-pedidos-cooperativa
-   ```
-
-2. **Instale as dependências**
-   ```bash
-   npm install
-   ```
-
-3. **Configure as variáveis de ambiente**
-   ```bash
-   cp .env.example .env
-   # Edite o arquivo .env com suas credenciais
-   ```
-
-4. **Execute o projeto em modo de desenvolvimento**
-   ```bash
-   npm run dev
-   ```
-
-5. **Acesse a aplicação**
-   - Abra seu navegador e acesse: `http://localhost:5173`
-
-## 🔐 Contas de Demonstração
-
-O sistema vem com contas pré-configuradas para teste:
-
-### Cooperativa (Administrador)
-- **Email**: `admin@cooperativa.com`
-- **Senha**: `123456`
-- **Acesso**: Todas as funcionalidades administrativas
-
-### Mercados Parceiros
-- **Mercado São João**
-  - Email: `joao@mercadosaojoao.com`
-  - Senha: `123456`
-
-- **Supermercado Família**
-  - Email: `maria@supermercadofamilia.com`
-  - Senha: `123456`
-
-## 📊 Configuração do Google Sheets
-
-### 1. Criar Planilha
-1. Acesse [Google Sheets](https://sheets.google.com)
-2. Crie uma nova planilha
-3. Configure as abas: `Produtos`, `Pedidos`, `Mercados`, `Usuarios`
-
-### 2. Configurar API
-1. Acesse [Google Cloud Console](https://console.cloud.google.com)
-2. Ative a Google Sheets API
-3. Crie credenciais (API Key + OAuth2)
-4. Configure as variáveis de ambiente
-
-### 3. Estrutura das Abas
-Consulte o arquivo `docs/GOOGLE_SHEETS_SETUP.md` para detalhes completos.
-
-## 📱 Configuração do AppSheet
-
-### 1. Criar App
-1. Acesse [AppSheet](https://appsheet.com)
-2. Crie novo app conectado à planilha
-3. Configure estrutura de dados e relacionamentos
-
-### 2. Configurar API
-1. Ative a API no AppSheet
-2. Copie App ID e Access Key
-3. Configure variáveis de ambiente
-
-### 3. Personalizar Interface
-- Branding da cooperativa
-- Idioma português
-- Notificações push
-- Funcionalidades offline
-
-Consulte o arquivo `docs/APPSHEET_INTEGRATION.md` para detalhes completos.
-
-## 🌐 Deploy e Hospedagem
-
-### Opções Recomendadas:
-
-#### 1. Vercel (Recomendado)
+### **1. Clone e Instale:**
 ```bash
-# Instalar Vercel CLI
-npm i -g vercel
+git clone [url-do-repositorio]
+cd sistema-pedidos-cooperativa-avancado
+npm install
+```
 
-# Deploy
+### **2. Configure Firebase:**
+1. Crie um projeto no [Firebase Console](https://console.firebase.google.com)
+2. Ative Authentication (Email/Password)
+3. Ative Firestore Database
+4. Ative Storage
+5. Copie as credenciais para `.env`
+
+### **3. Configure Variáveis de Ambiente:**
+```bash
+cp .env.example .env
+# Edite o arquivo .env com suas credenciais
+```
+
+### **4. Execute em Desenvolvimento:**
+```bash
+npm run dev
+```
+
+### **5. Acesse a Aplicação:**
+- Abra: `http://localhost:5173`
+
+## 🔐 Configuração de Segurança
+
+### **Firebase Rules (Firestore):**
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can only access their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Company data access based on user's company
+    match /companies/{companyId} {
+      allow read: if request.auth != null && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.companyId == companyId;
+      allow write: if request.auth != null && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['company_admin', 'super_admin'];
+    }
+    
+    // Products, orders, etc. - company isolated
+    match /{collection}/{document} {
+      allow read, write: if request.auth != null && 
+        resource.data.companyId == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.companyId;
+    }
+  }
+}
+```
+
+### **Firebase Rules (Storage):**
+```javascript
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /companies/{companyId}/{allPaths=**} {
+      allow read, write: if request.auth != null && 
+        firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.companyId == companyId;
+    }
+  }
+}
+```
+
+## 👥 Tipos de Usuário e Permissões
+
+### **Super Admin:**
+- Acesso a todas as empresas
+- Criação de novas empresas
+- Gestão de usuários globais
+- Configurações do sistema
+
+### **Company Admin:**
+- Gestão completa da empresa
+- Configuração de integrações
+- Gestão de usuários da empresa
+- Personalização de tema
+
+### **Cooperative:**
+- Gestão de produtos e pedidos
+- Relatórios e análises
+- Aprovação de pedidos
+- Gestão de mercados
+
+### **Market:**
+- Criação de pedidos
+- Visualização de produtos
+- Histórico de pedidos
+- Upload de documentos
+
+## 📊 Estrutura de Dados
+
+### **Companies:**
+```typescript
+{
+  id: string;
+  name: string;
+  logo?: string;
+  theme: {
+    primaryColor: string;
+    secondaryColor: string;
+    accentColor: string;
+    logo: string;
+  };
+  settings: {
+    googleSheets: { spreadsheetId, apiKey };
+    appSheet: { appId, accessKey };
+    googleDrive: { folderId };
+    business: { currency, timezone, taxRate };
+  };
+  subscription: {
+    plan: 'basic' | 'premium' | 'enterprise';
+    features: string[];
+  };
+}
+```
+
+### **Users:**
+```typescript
+{
+  id: string;
+  name: string;
+  email: string;
+  role: 'super_admin' | 'company_admin' | 'cooperative' | 'market';
+  companyId?: string;
+  permissions: Permission[];
+  preferences: UserPreferences;
+  isActive: boolean;
+}
+```
+
+## 🔧 Configuração por Empresa
+
+### **Google Sheets:**
+1. Crie uma planilha no Google Sheets
+2. Configure as abas: `Produtos`, `Pedidos`, `Mercados`
+3. Obtenha o ID da planilha
+4. Configure no painel administrativo
+
+### **AppSheet:**
+1. Crie um app no AppSheet
+2. Conecte à planilha Google Sheets
+3. Configure a API
+4. Adicione credenciais no sistema
+
+### **Google Drive:**
+1. Crie uma pasta no Google Drive
+2. Configure permissões de acesso
+3. Obtenha o ID da pasta
+4. Configure no painel administrativo
+
+## 📱 Funcionalidades Mobile
+
+### **Responsividade:**
+- **Breakpoints otimizados** para todos os dispositivos
+- **Touch-friendly** interface
+- **Navegação por gestos**
+- **Performance otimizada**
+
+### **PWA Ready:**
+- **Instalável** como app nativo
+- **Funciona offline** (cache estratégico)
+- **Push notifications** (futuro)
+- **App-like experience**
+
+## 📈 Relatórios e Analytics
+
+### **Tipos de Relatórios:**
+- **Vendas por período**
+- **Performance por mercado**
+- **Produtos mais vendidos**
+- **Análise financeira**
+- **Relatórios customizados**
+
+### **Formatos de Export:**
+- **PDF profissional**
+- **CSV para análise**
+- **Excel com formatação**
+- **Gráficos interativos**
+
+## 🔄 Integrações Disponíveis
+
+### **Google Workspace:**
+- **Sheets** para dados
+- **Drive** para documentos
+- **Gmail** para notificações
+- **Calendar** para agendamentos
+
+### **AppSheet:**
+- **App mobile nativo**
+- **Sincronização offline**
+- **Notificações push**
+- **Workflows automatizados**
+
+### **APIs Externas:**
+- **Correios** para CEP
+- **Bancos** para pagamentos (futuro)
+- **ERP** para integração (futuro)
+- **Contabilidade** para fiscal (futuro)
+
+## 🚀 Deploy e Hospedagem
+
+### **Vercel (Recomendado):**
+```bash
+npm i -g vercel
 vercel
 ```
 
-#### 2. Netlify
+### **Netlify:**
 ```bash
-# Build
 npm run build
-
-# Deploy via drag-and-drop ou GitHub
+# Deploy via interface ou CLI
 ```
 
-#### 3. Firebase Hosting
+### **Firebase Hosting:**
 ```bash
-# Instalar Firebase CLI
 npm install -g firebase-tools
-
-# Configurar e deploy
 firebase init hosting
 npm run build
 firebase deploy
 ```
 
-Consulte o arquivo `docs/DEPLOYMENT.md` para guias detalhados de cada plataforma.
+## 🔒 Segurança e Compliance
 
-## 🔧 Configuração de Variáveis de Ambiente
+### **Proteção de Dados:**
+- **LGPD compliant**
+- **Dados criptografados**
+- **Acesso auditado**
+- **Backup automático**
 
-```env
-# Google Sheets
-GOOGLE_SPREADSHEET_ID=your_spreadsheet_id_here
-GOOGLE_API_KEY=your_google_api_key_here
-GOOGLE_ACCESS_TOKEN=your_oauth_access_token_here
+### **Responsabilidades:**
+- **Cliente:** Responsável pelos dados no Google Drive
+- **Desenvolvedor:** Isento de vazamentos por permissões do cliente
+- **Sistema:** Logs de auditoria e controle de acesso
 
-# AppSheet
-APPSHEET_APP_ID=your_appsheet_app_id_here
-APPSHEET_ACCESS_KEY=your_appsheet_access_key_here
+## 📞 Suporte e Manutenção
 
-# Aplicação
-VITE_APP_TITLE=Sistema de Pedidos para Cooperativa
-VITE_APP_DESCRIPTION=Sistema de gestão de pedidos
-```
+### **Documentação:**
+- **Guias de usuário** por perfil
+- **Tutoriais em vídeo**
+- **FAQ completo**
+- **API documentation**
 
-## 📱 Como Usar o Sistema
+### **Suporte Técnico:**
+- **Email:** suporte@sistema.com
+- **Chat:** Suporte em tempo real
+- **Telefone:** Linha direta para emergências
+- **Documentação:** Base de conhecimento
 
-### Para Mercados:
+## 🔮 Roadmap Futuro
 
-1. **Fazer Login**
-   - Acesse a página inicial (web ou app)
-   - Use uma das contas de mercado
+### **Próximas Funcionalidades:**
+- **Pagamentos online** integrados
+- **Sistema de entregas** com rastreamento
+- **BI avançado** com dashboards
+- **Machine Learning** para previsões
+- **API pública** para integrações
 
-2. **Criar um Novo Pedido**
-   - Web: Clique em "Novo Pedido"
-   - App: Toque em "Fazer Pedido"
-   - Selecione produtos e quantidades
-   - Finalize o pedido
-
-3. **Acompanhar Pedidos**
-   - Visualize status em tempo real
-   - Receba notificações de atualizações
-   - Acesse histórico completo
-
-### Para Cooperativa:
-
-1. **Gerenciar Produtos**
-   - Adicione novos produtos
-   - Atualize preços e estoque
-   - Organize por categorias
-
-2. **Processar Pedidos**
-   - Visualize pedidos recebidos
-   - Confirme ou rejeite pedidos
-   - Atualize status de entrega
-
-3. **Análises e Relatórios**
-   - Dashboard com métricas
-   - Relatórios por período
-   - Exportação de dados
-
-## 🛠️ Tecnologias Utilizadas
-
-### Frontend Web:
-- **React 18** + TypeScript
-- **Tailwind CSS** para styling
-- **Lucide React** para ícones
-- **Vite** como build tool
-
-### Backend/Database:
-- **Google Sheets** como database
-- **Google Sheets API** para integração
-- **AppSheet API** para sincronização
-
-### Mobile:
-- **AppSheet** para app nativo
-- **Sincronização offline**
-- **Notificações push**
-
-### Deploy:
-- **Vercel/Netlify** para hospedagem web
-- **AppSheet** para distribuição mobile
-
-## 📊 Estrutura de Dados
-
-### Produtos
-- Nome, categoria, preço, unidade
-- Controle de estoque
-- Descrição detalhada
-
-### Pedidos
-- Itens com quantidades e preços
-- Status de acompanhamento (Pendente → Confirmado → Entregue)
-- Histórico de alterações
-- Observações opcionais
-
-### Mercados
-- Dados cadastrais completos
-- Estatísticas de compras
-- Histórico de pedidos
-
-## 🔄 Fluxo de Pedidos
-
-```
-1. Mercado cria pedido (Web/App) → Status: Pendente
-2. Cooperativa recebe notificação
-3. Cooperativa confirma pedido → Status: Confirmado
-4. Cooperativa processa e entrega
-5. Status atualizado → Status: Entregue
-6. Mercado recebe confirmação
-```
-
-## 📈 Relatórios Disponíveis
-
-- **Resumo de Pedidos**: Total, faturamento, ticket médio
-- **Status dos Pedidos**: Distribuição por status
-- **Top Produtos**: Mais vendidos por quantidade e valor
-- **Performance por Mercado**: Análise individual
-- **Histórico Detalhado**: Lista completa de transações
-- **Exportação**: PDF, Excel, CSV
-
-## 🔔 Notificações e Automações
-
-### Notificações Automáticas:
-- **Novo Pedido**: Cooperativa é notificada
-- **Status Atualizado**: Mercado recebe confirmação
-- **Produto em Falta**: Alertas de estoque
-- **Relatórios**: Resumos periódicos por email
-
-### Automações AppSheet:
-- **Workflows**: Processos automatizados
-- **Email Templates**: Modelos personalizados
-- **Push Notifications**: Alertas em tempo real
-
-## 🎨 Interface e UX
-
-### Design Responsivo:
-- **Desktop**: Interface completa para gestão
-- **Tablet**: Adaptação para telas médias
-- **Mobile**: App nativo otimizado
-
-### Tema e Branding:
-- **Cores**: Verde cooperativa (personalizável)
-- **Logo**: Espaço para logo da cooperativa
-- **Idioma**: Português brasileiro
-- **Moeda**: Real brasileiro (R$)
-
-## 🔧 Personalização
-
-### Fácil Customização:
-- **Cores**: Modifique classes Tailwind CSS
-- **Produtos**: Adicione campos personalizados
-- **Relatórios**: Crie novos tipos de análise
-- **Fluxos**: Adapte processos de negócio
-- **Branding**: Logo e cores da cooperativa
-
-## 📞 Suporte e Documentação
-
-### Documentação Técnica:
-- `docs/DEPLOYMENT.md` - Guia de deploy
-- `docs/GOOGLE_SHEETS_SETUP.md` - Configuração do Sheets
-- `docs/APPSHEET_INTEGRATION.md` - Integração AppSheet
-
-### Suporte:
-1. Consulte a documentação
-2. Teste com contas de demonstração
-3. Verifique logs de erro
-4. Entre em contato para suporte técnico
-
-## 🚀 Próximos Passos e Melhorias
-
-### Funcionalidades Futuras:
-- **Pagamentos Online**: Integração com gateways
-- **Logística**: Sistema de entregas
-- **Analytics Avançado**: BI e dashboards
-- **Multi-cooperativas**: Suporte a múltiplas cooperativas
-- **API Pública**: Para integrações externas
-- **Machine Learning**: Previsão de demanda
-
-### Integrações Possíveis:
-- **ERP**: Sistemas de gestão empresarial
-- **Contabilidade**: Softwares contábeis
-- **Bancos**: APIs bancárias para pagamentos
-- **Logística**: Sistemas de entrega
-- **E-commerce**: Plataformas de venda online
+### **Melhorias Planejadas:**
+- **Performance** otimizada
+- **UX/UI** aprimorada
+- **Acessibilidade** completa
+- **Internacionalização** (i18n)
 
 ## 📊 Métricas e KPIs
 
-### Dashboard Executivo:
-- **Volume de Pedidos**: Diário, semanal, mensal
-- **Faturamento**: Receita total e por mercado
-- **Produtos**: Mais vendidos e em falta
-- **Mercados**: Performance individual
-- **Crescimento**: Tendências e projeções
+### **Dashboard Executivo:**
+- **Volume de pedidos** em tempo real
+- **Faturamento** por empresa/período
+- **Performance** de mercados
+- **Crescimento** e tendências
+- **Alertas** automáticos
 
-### Relatórios Gerenciais:
-- **Análise de Vendas**: Por produto, categoria, período
-- **Performance de Mercados**: Ranking e estatísticas
-- **Controle de Estoque**: Giro e disponibilidade
-- **Financeiro**: Faturamento e recebimentos
+### **Analytics Avançado:**
+- **Comportamento** do usuário
+- **Conversão** de orçamentos
+- **Sazonalidade** de produtos
+- **Previsão** de demanda
 
 ---
 
-## 🌱 Sobre a Cooperativa
+## 🌟 **Transforme sua Cooperativa com Tecnologia de Ponta!**
 
-**Desenvolvido para otimizar a gestão de pedidos entre cooperativas e mercados parceiros**
+**Sistema completo, seguro e escalável para o futuro do seu negócio.** 🚀
 
-Este sistema representa a digitalização completa do processo de vendas, oferecendo:
-- **Eficiência**: Redução de tempo e erros
-- **Transparência**: Acompanhamento em tempo real
-- **Escalabilidade**: Suporte ao crescimento do negócio
-- **Mobilidade**: Acesso de qualquer lugar
-- **Integração**: Sincronização entre plataformas
+### **Benefícios Principais:**
+✅ **Multiempresa** - Múltiplas cooperativas no mesmo sistema  
+✅ **Segurança Avançada** - Firebase + controle de permissões  
+✅ **Mobile First** - Responsivo e PWA ready  
+✅ **Documentos Seguros** - Google Drive do cliente  
+✅ **Configuração Dinâmica** - Sem alteração de código  
+✅ **Relatórios Profissionais** - PDF e CSV personalizados  
+✅ **Orçamentos Completos** - Com impostos e condições  
+✅ **Escalabilidade** - Suporta crescimento ilimitado  
 
-**Transforme sua cooperativa com tecnologia de ponta!** 🚀📱💻
+**Entre em contato para implementação e customização!** 📧💼
